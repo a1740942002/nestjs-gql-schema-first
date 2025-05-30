@@ -1,22 +1,22 @@
 import { Injectable } from '@nestjs/common';
 import * as GraphQLTypes from '@/graphql/types';
-import { Coffee } from './entities/coffee.entity';
+import { CoffeeEntity } from './entities/coffee.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserInputError } from '@nestjs/apollo';
-import { Flavor } from './entities/flavor.entity';
+import { FlavorEntity } from './entities/flavor.entity';
 
 @Injectable()
 export class CoffeesService {
   constructor(
-    @InjectRepository(Coffee)
-    private readonly coffeesRepository: Repository<Coffee>,
-    @InjectRepository(Flavor)
-    private readonly flavorsRepository: Repository<Flavor>,
+    @InjectRepository(CoffeeEntity)
+    private readonly coffeesRepository: Repository<CoffeeEntity>,
+    @InjectRepository(FlavorEntity)
+    private readonly flavorsRepository: Repository<FlavorEntity>,
   ) {}
 
   // preloadFlavorByName method - for CoffeesService
-  private async preloadFlavorByName(name: string): Promise<Flavor> {
+  private async preloadFlavorByName(name: string): Promise<FlavorEntity> {
     const existingFlavor = await this.flavorsRepository.findOne({
       where: { name },
     });

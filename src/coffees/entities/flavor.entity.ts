@@ -1,16 +1,16 @@
 import { Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import * as GraphQLTypes from '@/graphql/types';
 import { Column } from 'typeorm';
-import { Coffee } from './coffee.entity';
+import { CoffeeEntity } from './coffee.entity';
 
 @Entity()
-export class Flavor implements GraphQLTypes.Flavor {
+export class FlavorEntity implements GraphQLTypes.Flavor {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   name: string;
 
-  @ManyToMany((type) => Coffee, (coffee) => coffee.flavors)
-  coffees: Coffee[];
+  @ManyToMany((type) => CoffeeEntity, (coffee) => coffee.flavors)
+  coffees: CoffeeEntity[];
 }
