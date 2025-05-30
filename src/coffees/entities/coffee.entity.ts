@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import * as GraphQLTypes from 'src/graphql/types';
+import * as GraphQLTypes from '@/graphql/types';
 
 @Entity()
 export class Coffee implements GraphQLTypes.Coffee {
