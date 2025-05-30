@@ -54,3 +54,7 @@ type Mutation {
   updateCoffee(id: ID!, updateCoffeeInput: UpdateCoffeeInput!): Coffee!
   removeCoffee(id: ID!): Coffee!
 }
+
+type Subscription {
+  coffeeAdded: Coffee!
+}

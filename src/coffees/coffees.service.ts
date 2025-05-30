@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserInputError } from '@nestjs/apollo';
 import { FlavorEntity } from './entities/flavor.entity';
+import { PubSub } from 'graphql-subscriptions';
 
 @Injectable()
 export class CoffeesService {
@@ -13,6 +14,7 @@ export class CoffeesService {
     private readonly coffeesRepository: Repository<CoffeeEntity>,
     @InjectRepository(FlavorEntity)
     private readonly flavorsRepository: Repository<FlavorEntity>,
+    private readonly pubSub: PubSub,
   ) {}
 
   // preloadFlavorByName method - for CoffeesService
@@ -48,9 +50,13 @@ export class CoffeesService {
     const coffee = this.coffeesRepository.create({
       ...createCoffeeInput,
       flavors,
-      type: createCoffeeInput.type ?? undefined,
+      type:
+        createCoffeeInput.type === null ? undefined : createCoffeeInput.type,
     });
-    return this.coffeesRepository.save(coffee);
+
+    const newCoffeeEntity = await this.coffeesRepository.save(coffee);
+    this.pubSub.publish('coffeeAdded', { coffeeAdded: newCoffeeEntity });
+    return newCoffeeEntity;
   }
 
   async update(
