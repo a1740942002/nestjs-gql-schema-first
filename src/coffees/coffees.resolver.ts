@@ -15,7 +15,9 @@ export class CoffeesResolver {
   }
 
   @Query(() => GraphQLTypes.Coffee, { name: 'coffee' })
-  async findOne(@Args('id', { type: () => ID }, ParseIntPipe) id: number) {
+  async findOne(
+    @Args('id', { type: () => ID }, ParseIntPipe) id: number,
+  ): Promise<GraphQLTypes.Coffee> {
     return this.coffeesService.findOne(id);
   }
 
@@ -23,7 +25,7 @@ export class CoffeesResolver {
   async create(
     @Args('createCoffeeInput')
     createCoffeeInput: CreateCoffeeInputDto,
-  ): Promise<GraphQLTypes.Coffee | null> {
+  ): Promise<GraphQLTypes.Coffee> {
     return this.coffeesService.create(createCoffeeInput);
   }
 

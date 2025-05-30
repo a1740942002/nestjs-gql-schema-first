@@ -44,6 +44,7 @@ export class CoffeesService {
     const flavors = await Promise.all(
       createCoffeeInput.flavors.map((name) => this.preloadFlavorByName(name)),
     );
+
     const coffee = this.coffeesRepository.create({
       ...createCoffeeInput,
       flavors,
