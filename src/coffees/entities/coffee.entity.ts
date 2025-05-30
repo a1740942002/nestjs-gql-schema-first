@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinTable,
   ManyToMany,
@@ -28,4 +29,7 @@ export class CoffeeEntity implements GraphQLTypes.Coffee {
     },
   )
   flavors: FlavorEntity[];
+
+  @CreateDateColumn()
+  createdAt?: Date | null;
 }
