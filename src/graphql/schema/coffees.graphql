@@ -1,8 +1,13 @@
+type Flavor {
+  id: ID!
+  name: String!
+}
+
 type Coffee {
   id: ID!
   name: String!
   brand: String!
-  flavors: [String!]!
+  flavors: [Flavor!]!
 }
 
 type Query {
