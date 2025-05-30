@@ -1,6 +1,6 @@
 import { ParseIntPipe } from '@nestjs/common';
 import { Resolver, Query, Args, ID } from '@nestjs/graphql';
-import { Coffee } from 'src/graphql';
+import { Coffee } from 'src/graphql/types';
 
 @Resolver()
 export class CoffeesResolver {
