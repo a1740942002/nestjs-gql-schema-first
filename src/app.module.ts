@@ -21,6 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      graphiql: true,
       typePaths: ['./**/*.graphql'],
     }),
     CoffeesModule,
