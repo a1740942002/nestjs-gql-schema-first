@@ -8,7 +8,6 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DateScalar } from './common/scalars/date.scalar';
 import { DrinksResolver } from './drinks/drinks.resolver';
-import { PubSubModule } from './pub-sub/pub-sub.module';
 
 @Module({
   imports: [
@@ -24,11 +23,11 @@ import { PubSubModule } from './pub-sub/pub-sub.module';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      graphiql: {
-        isHeadersEditorEnabled: true,
-      },
+      graphiql: true,
       typePaths: ['./**/*.graphql'],
-      installSubscriptionHandlers: true,
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     CoffeesModule,
   ],
