@@ -60,6 +60,8 @@ export class CoffeesService {
 
   async remove(id: number): Promise<GraphQLTypes.Coffee> {
     const coffee = await this.findOne(id);
-    return this.coffeesRepository.remove(coffee);
+    const result = { ...coffee };
+    await this.coffeesRepository.remove(coffee);
+    return result;
   }
 }
