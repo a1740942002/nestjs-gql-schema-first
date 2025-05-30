@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCoffeeInput } from 'src/graphql/types';
+import { CreateCoffeeInput } from '@/graphql/types';
 
 @Injectable()
 export class CoffeesService {
