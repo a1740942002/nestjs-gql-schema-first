@@ -20,6 +20,7 @@ import { DrinksResolver } from './drinks/drinks.resolver';
       database: 'gql-schema',
       autoLoadEntities: true,
       synchronize: true,
+      logging: ['query'],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
