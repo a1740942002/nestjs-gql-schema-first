@@ -7,6 +7,7 @@ import { ApolloDriverConfig } from '@nestjs/apollo';
 import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DateScalar } from './common/scalars/date.scalar';
+import { DrinksResolver } from './drinks/drinks.resolver';
 
 @Module({
   imports: [
@@ -29,6 +30,6 @@ import { DateScalar } from './common/scalars/date.scalar';
   ],
 
   controllers: [AppController],
-  providers: [AppService, DateScalar],
+  providers: [AppService, DateScalar, DrinksResolver],
 })
 export class AppModule {}
