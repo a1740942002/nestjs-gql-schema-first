@@ -1,5 +1,10 @@
 scalar Date
 
+enum CoffeeType {
+  ARABICA
+  ROBUSTA
+}
+
 interface Drink {
   name: String!
 }
@@ -19,24 +24,29 @@ type Coffee implements Drink {
   brand: String!
   flavors: [Flavor!]!
   createdAt: Date
+  type: CoffeeType
 }
+
+union DrinksResult = Coffee | Tea
 
 type Query {
   coffees: [Coffee!]!
   coffee(id: ID!): Coffee
-  drinks: [Drink!]!
+  drinks: [DrinksResult!]!
 }
 
 input CreateCoffeeInput {
   name: String!
   brand: String!
   flavors: [String!]!
+  type: CoffeeType
 }
 
 input UpdateCoffeeInput {
   name: String
   brand: String
   flavors: [String!]
+  type: CoffeeType
 }
 
 type Mutation {

@@ -23,7 +23,9 @@ import { DrinksResolver } from './drinks/drinks.resolver';
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      graphiql: true,
+      graphiql: {
+        isHeadersEditorEnabled: true,
+      },
       typePaths: ['./**/*.graphql'],
     }),
     CoffeesModule,

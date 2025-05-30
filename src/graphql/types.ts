@@ -8,16 +8,23 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export enum CoffeeType {
+    ARABICA = "ARABICA",
+    ROBUSTA = "ROBUSTA"
+}
+
 export class CreateCoffeeInput {
     name: string;
     brand: string;
     flavors: string[];
+    type?: Nullable<CoffeeType>;
 }
 
 export class UpdateCoffeeInput {
     name?: Nullable<string>;
     brand?: Nullable<string>;
     flavors?: Nullable<string[]>;
+    type?: Nullable<CoffeeType>;
 }
 
 export interface Drink {
@@ -39,12 +46,13 @@ export class Coffee implements Drink {
     brand: string;
     flavors: Flavor[];
     createdAt?: Nullable<Date>;
+    type?: Nullable<CoffeeType>;
 }
 
 export abstract class IQuery {
     coffees: Coffee[];
     coffee?: Nullable<Coffee>;
-    drinks: Drink[];
+    drinks: DrinksResult[];
 }
 
 export abstract class IMutation {
@@ -53,4 +61,5 @@ export abstract class IMutation {
     removeCoffee?: Coffee;
 }
 
+export type DrinksResult = Coffee | Tea;
 type Nullable<T> = T | null;

@@ -32,4 +32,7 @@ export class CoffeeEntity implements GraphQLTypes.Coffee {
 
   @CreateDateColumn()
   createdAt?: Date | null;
+
+  @Column({ nullable: true })
+  type: GraphQLTypes.CoffeeType;
 }

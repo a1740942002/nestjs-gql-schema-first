@@ -48,6 +48,7 @@ export class CoffeesService {
     const coffee = this.coffeesRepository.create({
       ...createCoffeeInput,
       flavors,
+      type: createCoffeeInput.type ?? undefined,
     });
     return this.coffeesRepository.save(coffee);
   }
