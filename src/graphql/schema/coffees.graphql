@@ -16,6 +16,14 @@ input CreateCoffeeInput {
   flavors: [String!]!
 }
 
+input UpdateCoffeeInput {
+  name: String
+  brand: String
+  flavors: [String!]
+}
+
 type Mutation {
   createCoffee(createCoffeeInput: CreateCoffeeInput!): Coffee!
+  updateCoffee(id: ID!, updateCoffeeInput: UpdateCoffeeInput!): Coffee!
+  removeCoffee(id: ID!): Coffee!
 }
